@@ -21,8 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,10 +66,11 @@ class HelloController {
     }
 }
 
-interface AccessLogRepository extends CrudRepository<AccessLog, Long> {
+interface AccessLogRepository extends MongoRepository<AccessLog, Long> {
 }
 
 @Data
+@Document
 class AccessLog {
     @Id
     private String id;
